@@ -12,5 +12,9 @@
   },
   "scripts": {
     "test": "mocha"
+  },
+  "reposiotry": {
+    "type": "git",
+    "url": "https://github.com/peter-murray/request-util.git"
   }
 }
