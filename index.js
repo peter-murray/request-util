@@ -53,7 +53,7 @@ function _request(requestOptions) {
     var deferred = Q.defer();
 
     if (requestOptions.debug) {
-        console.log(_generateDisplayParameters(requestOptions));
+        console.log(JSON.stringify(_generateDisplayParameters(requestOptions), null, 2));
     }
 
     request(requestOptions, function (error, response, body) {
@@ -149,6 +149,22 @@ function _requireStatusCode(expectedStatusCode, failureMessage) {
             throw error;
         }
     }
+}
+
+function _generateDisplayParameters(params) {
+    var displayParams = {};
+
+    Object.keys(params).forEach(function(key) {
+        var value = params[key];
+
+        if (/password/.test(key)) {
+            value = "***** REDACTED *****";
+        }
+
+        displayParams[key] = value;
+    });
+
+    return displayParams;
 }
 
 module.exports = {
